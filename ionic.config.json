@@ -1,0 +1,7 @@
+{
+  "name": "coc",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
