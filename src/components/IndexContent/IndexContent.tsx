@@ -14,7 +14,6 @@ const IndexContent = (props: any) => {
     axios
       .get("https://gateway.marvel.com/v1/public/"+type+"?limit=25&ts=1&apikey=12f5847be4794d8c2b8d85bca58b613d&hash=286ef4047eeb493bc6ac760f4bdcdc6d")
       .then(response => {
-        // console.log(response.data.data)
         setContents(response.data.data.results)
       })
   }, [type])
