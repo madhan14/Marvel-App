@@ -1,23 +1,23 @@
-import { IonButtons, IonButton, IonCard, IonCardHeader, IonCardTitle, IonContent, IonHeader, IonList, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButtons, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonHeader, IonItem, IonList, IonMenuButton, IonPage, IonTitle, IonToolbar, IonCardSubtitle } from '@ionic/react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import './Characters.css';
+import './Creators.css';
 import { useParams } from 'react-router';
 import Comics from '../../components/Comics/Comics';
 import Events from '../../components/Events/Events';
 import Series from '../../components/Series/Series';
 import Stories from '../../components/Stories/Stories';
 
-const SingleCharacter: React.FC = () => {
+const SingleCreator: React.FC = () => {
 
-    const [character, setCharacter] = useState<any>([]);
+    const [creators, setCreators] = useState<any>([]);
     const id = useParams<{ id: any; }>();
   
     useEffect(() => {
         axios
-            .get("https://gateway.marvel.com/v1/public/characters/"+id.id+"?ts=1&apikey=12f5847be4794d8c2b8d85bca58b613d&hash=286ef4047eeb493bc6ac760f4bdcdc6d")
+            .get("https://gateway.marvel.com/v1/public/creators/"+id.id+"?ts=1&apikey=12f5847be4794d8c2b8d85bca58b613d&hash=286ef4047eeb493bc6ac760f4bdcdc6d")
             .then(response => {
-                setCharacter(response.data.data.results)
+                setCreators(response.data.data.results)
             })
     }, [id])
 
@@ -28,33 +28,35 @@ const SingleCharacter: React.FC = () => {
                     <IonButtons slot='start'>
                         <IonMenuButton />
                     </IonButtons>
-                    <IonTitle>Character</IonTitle>
+                    <IonTitle>Creator</IonTitle>
                 </IonToolbar>
             </IonHeader>
             <IonContent fullscreen>
                 <IonList>
                     {
-                        character?.map((character: any, index: any) => {
+                        creators?.map((creator: any, index: any) => {
                             return(
                                 <div key={index}>
                                     <IonCard>
-                                        <img alt="" src={character.thumbnail.path+'.'+character.thumbnail.extension} />
+                                        <img alt="" src={creator.thumbnail.path+'.'+creator.thumbnail.extension} />
                                         <IonCardHeader>
-                                            <IonCardTitle>{character.name}</IonCardTitle>
+                                            <IonCardTitle>{creator.fullName}</IonCardTitle>
+                                            <IonCardSubtitle>
+                                                {creator.description}
+                                            </IonCardSubtitle>
                                         </IonCardHeader>
-
                                         {
-                                            character.urls?.map((url: any, index: any) => {
+                                            creator.urls?.map((url: any, index: any) => {
                                                 return(
                                                     <IonButton href={url.url} key={index} fill="clear">{url.type}</IonButton>
                                                 )
                                             })
                                         }
                                     </IonCard>
-                                    <Comics comics={character.comics} />
-                                    <Events events={character.events} />
-                                    <Series series={character.series} />
-                                    <Stories stories={character.stories} />
+                                    <Comics comics={creator.comics} />
+                                    <Events events={creator.events} />
+                                    <Series series={creator.series} />
+                                    <Stories stories={creator.stories} />
                                 </div>
                             )
                         })
@@ -65,4 +67,4 @@ const SingleCharacter: React.FC = () => {
     );
 };
 
-export default SingleCharacter;
+export default SingleCreator;
