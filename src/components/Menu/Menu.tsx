@@ -11,7 +11,7 @@ import {
   } from '@ionic/react';
   
   import { useLocation } from 'react-router-dom';
-  import { archiveOutline, archiveSharp, heartOutline, heartSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
+  import { archiveOutline, archiveSharp, bookOutline, heartOutline, heartSharp, libraryOutline, mailOutline, mailSharp, newspaperOutline, paperPlaneOutline, paperPlaneSharp, personAddOutline, personOutline, receiptOutline, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
   import './Menu.css';
   
   interface AppPage {
@@ -25,38 +25,38 @@ import {
     {
       title: 'All Characters',
       url: '/Characters',
-      iosIcon: mailOutline,
-      mdIcon: mailSharp
+      iosIcon: personOutline,
+      mdIcon: personOutline
     },
     {
       title: 'All Comics',
       url: '/Comics',
-      iosIcon: paperPlaneOutline,
-      mdIcon: paperPlaneSharp
+      iosIcon: bookOutline,
+      mdIcon: bookOutline
     },
     {
       title: 'All Creators',
       url: '/Creators',
-      iosIcon: heartOutline,
-      mdIcon: heartSharp
+      iosIcon: personAddOutline,
+      mdIcon: personAddOutline
     },
     {
       title: 'All Events',
       url: '/Events',
-      iosIcon: archiveOutline,
-      mdIcon: archiveSharp
+      iosIcon: receiptOutline,
+      mdIcon: receiptOutline
     },
     {
       title: 'All Series',
       url: '/Series',
-      iosIcon: trashOutline,
-      mdIcon: trashSharp
+      iosIcon: libraryOutline,
+      mdIcon: libraryOutline
     },
     {
       title: 'All Stories',
       url: '/Stories',
-      iosIcon: warningOutline,
-      mdIcon: warningSharp
+      iosIcon: newspaperOutline,
+      mdIcon: newspaperOutline
     }
   ];
     
