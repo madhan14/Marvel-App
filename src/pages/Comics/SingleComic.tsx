@@ -1,8 +1,7 @@
-import { IonButtons, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonMenuButton, IonPage, IonThumbnail, IonTitle, IonToolbar, IonCardSubtitle } from '@ionic/react';
+import { IonButtons, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonHeader, IonItem, IonList, IonMenuButton, IonPage, IonTitle, IonToolbar, IonCardSubtitle } from '@ionic/react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Comics.css';
-import { arrowForwardOutline } from 'ionicons/icons';
 import { useParams } from 'react-router';
 
 const SingleComic: React.FC = () => {
@@ -36,7 +35,7 @@ const SingleComic: React.FC = () => {
                 return(
                     <div key={index}>
                         <IonCard>
-                            <img src={comic.thumbnail.path+'.'+comic.thumbnail.extension} />
+                            <img alt="" src={comic.thumbnail.path+'.'+comic.thumbnail.extension} />
                             <IonCardHeader>
                                 <IonCardTitle>{comic.title}</IonCardTitle>
                                 <IonCardSubtitle>

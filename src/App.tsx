@@ -2,11 +2,14 @@ import { IonApp, IonRouterOutlet, IonSplitPane, setupIonicReact } from '@ionic/r
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
 import Menu from './components/Menu/Menu';
-import Page from './pages/Page/Page';
 import Characters from './pages/Characters/Characters';
 import SingleCharacter from './pages/Characters/SingleCharacter';
 import Comics from './pages/Comics/Comics';
 import SingleComic from './pages/Comics/SingleComic';
+import Creators from './pages/Creators/Creators';
+import Events from './pages/Events/Events';
+import Series from './pages/Series/Series';
+import Stories from './pages/Stories/Stories';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -39,33 +42,37 @@ const App: React.FC = () => {
             <Route path="/" exact={true}>
               <Redirect to="/page/Inbox" />
             </Route>
-            <Route path="/page/:name" exact={true}>
-              <Page />
-            </Route>
+
             <Route path="/Characters" exact={true}>
               <Characters />
             </Route>
             <Route path="/SingleCharacter/:id" exact={true}>
               <SingleCharacter />
             </Route>
+
             <Route path="/Comics" exact>
               <Comics />
             </Route>
             <Route path="/SingleComic/:id" exact={true}>
               <SingleComic />
             </Route>
+
             <Route path="/Creators" exact>
-              <Characters />
+              <Creators />
             </Route>
+
             <Route path="/Events" exact>
-              <Characters />
+              <Events />
             </Route>
+
             <Route path="/Series" exact>
-              <Characters />
+              <Series />
             </Route>
+
             <Route path="/Stories" exact>
-              <Characters />
+              <Stories />
             </Route>
+
           </IonRouterOutlet>
         </IonSplitPane>
       </IonReactRouter>

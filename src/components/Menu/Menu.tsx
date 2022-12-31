@@ -35,26 +35,26 @@ import {
       mdIcon: paperPlaneSharp
     },
     {
-      title: 'Creators',
-      url: '/page/Creators',
+      title: 'All Creators',
+      url: '/Creators',
       iosIcon: heartOutline,
       mdIcon: heartSharp
     },
     {
-      title: 'Events',
-      url: '/page/Events',
+      title: 'All Events',
+      url: '/Events',
       iosIcon: archiveOutline,
       mdIcon: archiveSharp
     },
     {
-      title: 'Series',
-      url: '/page/Series',
+      title: 'All Series',
+      url: '/Series',
       iosIcon: trashOutline,
       mdIcon: trashSharp
     },
     {
-      title: 'Stories',
-      url: '/page/Stories',
+      title: 'All Stories',
+      url: '/Stories',
       iosIcon: warningOutline,
       mdIcon: warningSharp
     }

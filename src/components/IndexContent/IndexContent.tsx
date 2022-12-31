@@ -14,6 +14,7 @@ const IndexContent = (props: any) => {
     axios
       .get("https://gateway.marvel.com/v1/public/"+type+"?limit=25&ts=1&apikey=12f5847be4794d8c2b8d85bca58b613d&hash=286ef4047eeb493bc6ac760f4bdcdc6d")
       .then(response => {
+        // console.log(response.data.data)
         setContents(response.data.data.results)
       })
   }, [type])
@@ -35,11 +36,12 @@ const IndexContent = (props: any) => {
                 return(
                   <IonItem key={index}>
                     <IonThumbnail slot='start'>
-                      <img alt='image' src={content.thumbnail.path+'.'+content.thumbnail.extension} />
+                      <img alt='' src={content.thumbnail?.path+'.'+content.thumbnail?.extension} />
                     </IonThumbnail>
                     <IonLabel>
                       {content.name}
                       {content.title}
+                      {content.fullName}
                     </IonLabel>
                     <IonIcon
                       icon={arrowForwardOutline}

@@ -1,8 +1,7 @@
-import { IonButtons, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonMenuButton, IonPage, IonThumbnail, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButtons, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonHeader, IonItem, IonList, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Characters.css';
-import { arrowForwardOutline } from 'ionicons/icons';
 import { useParams } from 'react-router';
 
 const SingleCharacter: React.FC = () => {
@@ -35,7 +34,7 @@ const SingleCharacter: React.FC = () => {
                 return(
                     <div key={index}>
                         <IonCard>
-                            <img src={character.thumbnail.path+'.'+character.thumbnail.extension} />
+                            <img alt="" src={character.thumbnail.path+'.'+character.thumbnail.extension} />
                             <IonCardHeader>
                                 <IonCardTitle>{character.name}</IonCardTitle>
                             </IonCardHeader>
