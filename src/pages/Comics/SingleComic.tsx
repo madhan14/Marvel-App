@@ -1,20 +1,21 @@
-import { IonButtons, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonMenuButton, IonPage, IonThumbnail, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButtons, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonMenuButton, IonPage, IonThumbnail, IonTitle, IonToolbar, IonCardSubtitle } from '@ionic/react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import './Characters.css';
+import './Comics.css';
 import { arrowForwardOutline } from 'ionicons/icons';
 import { useParams } from 'react-router';
 
-const SingleCharacter: React.FC = () => {
+const SingleComic: React.FC = () => {
 
-  const [character, setCharacter] = useState<any>([]);
+  const [comics, setComics] = useState<any>([]);
   const id = useParams<{ id: any; }>();
   
   useEffect(() => {
     axios
-      .get("https://gateway.marvel.com/v1/public/characters/"+id.id+"?ts=1&apikey=12f5847be4794d8c2b8d85bca58b613d&hash=286ef4047eeb493bc6ac760f4bdcdc6d")
+      .get("https://gateway.marvel.com/v1/public/comics/"+id.id+"?ts=1&apikey=12f5847be4794d8c2b8d85bca58b613d&hash=286ef4047eeb493bc6ac760f4bdcdc6d")
       .then(response => {
-        setCharacter(response.data.data.results)
+        console.log(response.data.data)
+        setComics(response.data.data.results)
       })
   }, [id])
 
@@ -25,23 +26,27 @@ const SingleCharacter: React.FC = () => {
           <IonButtons slot='start'>
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>Character</IonTitle>
+          <IonTitle>Comic</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <IonList>
             {
-              character?.map((character: any, index: any) => {
+              comics?.map((comic: any, index: any) => {
                 return(
                     <div key={index}>
                         <IonCard>
-                            <img src={character.thumbnail.path+'.'+character.thumbnail.extension} />
+                            <img src={comic.thumbnail.path+'.'+comic.thumbnail.extension} />
                             <IonCardHeader>
-                                <IonCardTitle>{character.name}</IonCardTitle>
+                                <IonCardTitle>{comic.title}</IonCardTitle>
+                                <IonCardSubtitle>
+                                    {comic.description}
+                                    <p>Page count: {comic.pageCount}</p>
+                                </IonCardSubtitle>
                             </IonCardHeader>
 
                             {
-                                character.urls?.map((url: any, index: any) => {
+                                comic.urls?.map((url: any, index: any) => {
                                     return(
                                         <IonButton href={url.url} key={index} fill="clear">{url.type}</IonButton>
                                     )
@@ -50,11 +55,27 @@ const SingleCharacter: React.FC = () => {
                         </IonCard>
                         <IonCard>
                             <IonCardHeader>
-                                <IonCardTitle>Comics</IonCardTitle>
+                                <IonCardTitle>Creators</IonCardTitle>
                             </IonCardHeader>
                             <IonCardContent>
                                 {
-                                    character.comics.items?.map((item: any, index: any) => {
+                                    comic.creators.items?.map((item: any, index: any) => {
+                                        return(
+                                            <IonItem key={index}>
+                                                <p>{item.name}</p>
+                                            </IonItem>
+                                        )
+                                    })
+                                }
+                            </IonCardContent>
+                        </IonCard>
+                        <IonCard>
+                            <IonCardHeader>
+                                <IonCardTitle>Characters</IonCardTitle>
+                            </IonCardHeader>
+                            <IonCardContent>
+                                {
+                                    comic.characters.items?.map((item: any, index: any) => {
                                         return(
                                             <IonItem key={index}>
                                                 <p>{item.name}</p>
@@ -69,15 +90,15 @@ const SingleCharacter: React.FC = () => {
                                 <IonCardTitle>Series</IonCardTitle>
                             </IonCardHeader>
                             <IonCardContent>
-                                {
-                                    character.series.items?.map((item: any, index: any) => {
-                                        return(
-                                            <IonItem key={index}>
-                                                <p>{item.name}</p>
+                                {/* {
+                                    comic.series.items?.map((item: any, index: any) => {
+                                        return( */}
+                                            <IonItem>
+                                                <p>{comic.series.name}</p>
                                             </IonItem>
-                                        )
+                                        {/* )
                                     })
-                                }
+                                } */}
                             </IonCardContent>
                         </IonCard>
                         <IonCard>
@@ -86,7 +107,7 @@ const SingleCharacter: React.FC = () => {
                             </IonCardHeader>
                             <IonCardContent>
                                 {
-                                    character.stories.items?.map((item: any, index: any) => {
+                                    comic.stories.items?.map((item: any, index: any) => {
                                         return(
                                             <IonItem key={index}>
                                                 <p>{item.name}</p>
@@ -106,4 +127,4 @@ const SingleCharacter: React.FC = () => {
   );
 };
 
-export default SingleCharacter;
+export default SingleComic;

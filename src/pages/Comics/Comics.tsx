@@ -1,9 +1,9 @@
-import './Characters.css';
+import './Comics.css';
 import IndexContent from '../../components/IndexContent/IndexContent';
 
-const Characters: React.FC = () => {
+const Comics: React.FC = () => {
 
-  const name: any = window.location.pathname.split('/')[1];
+  const name = window.location.pathname.split('/')[1];
   const type = name.toLocaleLowerCase();
 
   return (
@@ -11,4 +11,4 @@ const Characters: React.FC = () => {
   );
 };
 
-export default Characters;
+export default Comics;

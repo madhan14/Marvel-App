@@ -29,8 +29,8 @@ import {
       mdIcon: mailSharp
     },
     {
-      title: 'Comics',
-      url: '/page/Comics',
+      title: 'All Comics',
+      url: '/Comics',
       iosIcon: paperPlaneOutline,
       mdIcon: paperPlaneSharp
     },

@@ -4,6 +4,9 @@ import { Redirect, Route } from 'react-router-dom';
 import Menu from './components/Menu/Menu';
 import Page from './pages/Page/Page';
 import Characters from './pages/Characters/Characters';
+import SingleCharacter from './pages/Characters/SingleCharacter';
+import Comics from './pages/Comics/Comics';
+import SingleComic from './pages/Comics/SingleComic';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -23,7 +26,6 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import SingleCharacter from './pages/Characters/SingleCharacter';
 
 setupIonicReact();
 
@@ -47,7 +49,10 @@ const App: React.FC = () => {
               <SingleCharacter />
             </Route>
             <Route path="/Comics" exact>
-              <Characters />
+              <Comics />
+            </Route>
+            <Route path="/SingleComic/:id" exact={true}>
+              <SingleComic />
             </Route>
             <Route path="/Creators" exact>
               <Characters />
