@@ -2,6 +2,7 @@ import { IonButtons, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonList,
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { arrowForwardOutline } from 'ionicons/icons';
+import env from '../../pages/env/env';
 
 const IndexContent = (props: any) => {
 
@@ -12,7 +13,7 @@ const IndexContent = (props: any) => {
   
   useEffect(() => {
     axios
-      .get("https://gateway.marvel.com/v1/public/"+type+"?limit=25&ts=1&apikey=12f5847be4794d8c2b8d85bca58b613d&hash=286ef4047eeb493bc6ac760f4bdcdc6d")
+      .get(env.url+type+"?limit=25&"+env.key)
       .then(response => {
         setContents(response.data.data.results)
       })
@@ -47,7 +48,7 @@ const IndexContent = (props: any) => {
                       slot="end"
                       color='primary'
                       onClick={() => {
-                        window.location.href='/Single'+name.substring(0, name.length - 1)+'/'+content.id;
+                        window.location.href='/Single/'+name.toLowerCase()+'/'+content.id;
                       }}
                     />
                   </IonItem>
