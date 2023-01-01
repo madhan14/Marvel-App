@@ -1,6 +1,8 @@
-import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonItem } from '@ionic/react';
+import { IonCard, IonCardContent, IonCardHeader, IonCardTitle } from '@ionic/react';
+import Modal from '../Modal/Modal';
 
 const Comics = (props: any) => {
+
     if(props.comics.available > 0){
         return (
             <IonCard>
@@ -11,9 +13,9 @@ const Comics = (props: any) => {
                     {
                         props.comics.items?.map((item: any, index: any) => {
                             return(
-                                <IonItem key={index}>
-                                    <p>{item.name}</p>
-                                </IonItem>
+                                <div key={index}>
+                                    <Modal item={item}/>
+                                </div>
                             )
                         })
                     }

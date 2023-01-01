@@ -11,7 +11,7 @@ import Creators from '../Creators/Creators';
 import Characters from '../Characters/Characters';
 import env from '../../pages/env/env';
 
-const Single: React.FC = () => {
+const SingleContent: React.FC = () => {
 
     const [contents, setContents] = useState<any>([]);
     const id = useParams<{ id: any; name: any; }>();
@@ -54,7 +54,7 @@ const Single: React.FC = () => {
                                             })
                                         }
                                     </IonCard>
-                                    {content.character ? <Characters characters={content.characters} /> : ''}
+                                    {content.characters ? <Characters characters={content.characters} /> : ''}
                                     {content.creators ? <Creators creators={content.creators} /> : ''}
                                     {content.comics ? <Comics comics={content.comics} /> : ''}
                                     {content.events ? <Events events={content.events} /> : ''}
@@ -70,4 +70,4 @@ const Single: React.FC = () => {
     );
 };
 
-export default Single;
+export default SingleContent;

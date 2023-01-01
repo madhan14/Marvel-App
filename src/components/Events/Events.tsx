@@ -1,4 +1,5 @@
 import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonItem } from '@ionic/react';
+import Modal from '../Modal/Modal';
 
 const Events = (props: any) => {
     if(props.events.available > 0){
@@ -11,9 +12,9 @@ const Events = (props: any) => {
                     {
                         props.events.items?.map((item: any, index: any) => {
                             return(
-                                <IonItem key={index}>
-                                    <p>{item.name}</p>
-                                </IonItem>
+                                <div key={index}>
+                                    <Modal item={item} />
+                                </div>
                             )
                         })
                     }

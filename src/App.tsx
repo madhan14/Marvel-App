@@ -8,7 +8,7 @@ import Creators from './pages/Creators/Creators';
 import Events from './pages/Events/Events';
 import Series from './pages/Series/Series';
 import Stories from './pages/Stories/Stories';
-import Single from './components/Single/Single';
+import SingleContent from './components/SingleContent/SingleContent';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -69,7 +69,7 @@ const App: React.FC = () => {
 
 
             <Route path="/Single/:name/:id" exact={true}>
-              <Single />
+              <SingleContent />
             </Route>
 
           </IonRouterOutlet>
