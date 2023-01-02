@@ -14,11 +14,14 @@ import env from '../../pages/env/env';
 const SingleContent: React.FC = () => {
 
     const [contents, setContents] = useState<any>([]);
-    const id = useParams<{ id: any; name: any; }>();
-  
+    const parameters = useParams<{ id: any; name: any; character: any; }>();
+    const id = parameters.id;
+    const name = parameters.name;
+    const characterName = parameters.character;
+
     useEffect(() => {
         axios
-            .get(env.url+id.name+"/"+id.id+"?"+env.key)
+            .get(env.url+name+"/"+id+"?"+env.key)
             .then(response => {
                 setContents(response.data.data.results)
             })
@@ -31,7 +34,7 @@ const SingleContent: React.FC = () => {
                     <IonButtons slot='start'>
                         <IonMenuButton />
                     </IonButtons>
-                    <IonTitle>Character</IonTitle>
+                    <IonTitle>{characterName}</IonTitle>
                 </IonToolbar>
             </IonHeader>
             <IonContent fullscreen>

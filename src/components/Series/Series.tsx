@@ -1,4 +1,4 @@
-import { IonCard, IonCardContent, IonCardHeader, IonCardTitle } from '@ionic/react';
+import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonItem } from '@ionic/react';
 import Modal from '../Modal/Modal';
 
 const Series = (props: any) => {
@@ -12,9 +12,9 @@ const Series = (props: any) => {
                     {
                         props.series.items?.map((item: any, index: any) => {
                             return(
-                                <div key={index}>
-                                    <Modal item={item} />
-                                </div>
+                                <IonItem key={index}>
+                                    <p>{item.name}</p>
+                                </IonItem>
                             )
                         })
                     }

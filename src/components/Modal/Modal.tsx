@@ -11,6 +11,7 @@ const Modal = (props: any) => {
         axios
             .get(props.resourceURI+"?"+env.key)
             .then(response => {
+                console.log(response.data.data);
                 setModal(response.data.data.results)
             })
     }

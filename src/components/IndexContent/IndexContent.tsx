@@ -48,7 +48,14 @@ const IndexContent = (props: any) => {
                       slot="end"
                       color='primary'
                       onClick={() => {
-                        window.location.href='/Single/'+name.toLowerCase()+'/'+content.id;
+                        if(content.name){
+                          var Cname= content.name;
+                        } else if(content.title){
+                          var Cname= content.title;
+                        } else if(content.fullName){
+                          var Cname= content.fullName;
+                        }
+                        window.location.href='/Single/'+name.toLowerCase()+'/'+content.id+'/'+Cname;
                       }}
                     />
                   </IonItem>

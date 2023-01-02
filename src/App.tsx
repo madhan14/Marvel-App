@@ -68,7 +68,7 @@ const App: React.FC = () => {
             </Route>
 
 
-            <Route path="/Single/:name/:id" exact={true}>
+            <Route path="/Single/:name/:id/:character" exact={true}>
               <SingleContent />
             </Route>
 
