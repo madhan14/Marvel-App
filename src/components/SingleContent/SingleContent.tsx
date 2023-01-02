@@ -25,7 +25,7 @@ const SingleContent: React.FC = () => {
             .then(response => {
                 setContents(response.data.data.results)
             })
-    }, [id])
+    }, [id, name])
 
     return (
         <IonPage>

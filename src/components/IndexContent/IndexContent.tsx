@@ -1,4 +1,4 @@
-import { IonButtons, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonMenuButton, IonPage, IonThumbnail, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButton, IonButtons, IonContent, IonFooter, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonMenuButton, IonPage, IonThumbnail, IonTitle, IonToolbar } from '@ionic/react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { arrowForwardOutline } from 'ionicons/icons';
@@ -10,14 +10,19 @@ const IndexContent = (props: any) => {
   const type = props.type;
   
   const [contents, setContents] = useState<any>([]);
+  const [contentOffset, setContentOffset] = useState<any>();
+  const [CName, setCName] = useState();
+  const [offset, setOffset] = useState(0);
+  const limit = 30;
   
   useEffect(() => {
     axios
-      .get(env.url+type+"?limit=25&"+env.key)
+      .get(env.url+type+"?limit="+limit+"&offset="+offset+"&"+env.key)
       .then(response => {
-        setContents(response.data.data.results)
+        setContentOffset(response.data.data);
+        setContents(response.data.data.results);
       })
-  }, [type])
+  }, [offset, limit, type])
 
   return (
     <IonPage>
@@ -30,41 +35,62 @@ const IndexContent = (props: any) => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonList>
-            {
-              contents?.map((content: any, index: any) => {
-                return(
-                  <IonItem key={index}>
-                    <IonThumbnail slot='start'>
-                      <img alt='' src={content.thumbnail?.path+'.'+content.thumbnail?.extension} />
-                    </IonThumbnail>
-                    <IonLabel>
-                      {content.name}
-                      {content.title}
-                      {content.fullName}
-                    </IonLabel>
-                    <IonIcon
-                      icon={arrowForwardOutline}
-                      slot="end"
-                      color='primary'
-                      onClick={() => {
-                        if(content.name){
-                          var Cname= content.name;
-                        } else if(content.title){
-                          var Cname= content.title;
-                        } else if(content.fullName){
-                          var Cname= content.fullName;
-                        }
-                        window.location.href='/Single/'+name.toLowerCase()+'/'+content.id+'/'+Cname;
-                      }}
-                    />
-                  </IonItem>
-                  
-                )
-              })
-            }
+        <IonList lines='full'>
+          {
+            contents?.map((content: any, index: any) => {
+              return(
+                <IonItem key={index}>
+                  <IonThumbnail slot='start'>
+                    <img alt='' src={content.thumbnail?.path+'.'+content.thumbnail?.extension} />
+                  </IonThumbnail>
+                  <IonLabel>
+                    {content.name}
+                    {content.title}
+                    {content.fullName}
+                  </IonLabel>
+                  <IonIcon
+                    icon={arrowForwardOutline}
+                    slot="end"
+                    color='primary'
+                    onClick={() => {
+                      if(content.name){
+                        setCName(content.name);
+                      } else if(content.title){
+                        setCName(content.title);
+                      } else if(content.fullName){
+                        setCName(content.fullName);
+                      }
+                      window.location.href='/Single/'+name.toLowerCase()+'/'+content.id+'/'+CName;
+                    }}
+                  />
+                </IonItem>
+              )
+            })
+          }
         </IonList>
       </IonContent>
+      <IonFooter>
+        <IonToolbar>
+          <IonButton
+            slot='start'
+            disabled={contentOffset?.offset === 0 ? true : false}
+            onClick = {() => {
+              setOffset(offset-limit);
+            }}
+          >
+            Previous
+          </IonButton>
+          <IonButton
+            slot = 'end'
+            disabled = {contentOffset?.offset + contentOffset?.limit >= contentOffset?.total ? true : false}
+            onClick = { () => {
+              setOffset(offset+limit);
+            }}
+          >
+            Next
+          </IonButton>
+        </IonToolbar>
+      </IonFooter>
     </IonPage>
   );
 };

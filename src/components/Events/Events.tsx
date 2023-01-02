@@ -1,4 +1,4 @@
-import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonItem } from '@ionic/react';
+import { IonCard, IonCardContent, IonCardHeader, IonCardTitle } from '@ionic/react';
 import Modal from '../Modal/Modal';
 
 const Events = (props: any) => {

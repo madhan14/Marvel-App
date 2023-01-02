@@ -1,5 +1,4 @@
 import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonItem } from '@ionic/react';
-import Modal from '../Modal/Modal';
 
 const Stories = (props: any) => {
     if(props.stories.available > 0){
