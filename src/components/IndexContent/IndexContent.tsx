@@ -1,7 +1,7 @@
-import { IonButton, IonButtons, IonContent, IonFooter, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonMenuButton, IonPage, IonThumbnail, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButton, IonButtons, IonContent, IonFooter, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonMenuButton, IonPage, IonThumbnail, IonTitle, IonToolbar, useIonLoading } from '@ionic/react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { arrowForwardOutline } from 'ionicons/icons';
+import { arrowForwardOutline, chevronBack, chevronForward } from 'ionicons/icons';
 import env from '../../pages/env/env';
 
 const IndexContent = (props: any) => {
@@ -13,6 +13,7 @@ const IndexContent = (props: any) => {
   const [contentOffset, setContentOffset] = useState<any>();
   const [CName, setCName] = useState();
   const [offset, setOffset] = useState(0);
+  const [perLoad, dismisspreLoad] = useIonLoading();
   const limit = 30;
   
   useEffect(() => {
@@ -21,8 +22,9 @@ const IndexContent = (props: any) => {
       .then(response => {
         setContentOffset(response.data.data);
         setContents(response.data.data.results);
+        dismisspreLoad();
       })
-  }, [offset, limit, type])
+  }, [offset, limit, type, dismisspreLoad])
 
   return (
     <IonPage>
@@ -75,19 +77,27 @@ const IndexContent = (props: any) => {
             slot='start'
             disabled={contentOffset?.offset === 0 ? true : false}
             onClick = {() => {
+              perLoad({
+                message: 'Loading...',
+                spinner: 'circles'
+              })
               setOffset(offset-limit);
             }}
           >
-            Previous
+            <IonIcon icon={chevronBack} />
           </IonButton>
           <IonButton
             slot = 'end'
             disabled = {contentOffset?.offset + contentOffset?.limit >= contentOffset?.total ? true : false}
             onClick = { () => {
+              perLoad({
+                message: 'Loading...',
+                spinner: 'circles'
+              })
               setOffset(offset+limit);
             }}
           >
-            Next
+            <IonIcon icon={chevronForward} />
           </IonButton>
         </IonToolbar>
       </IonFooter>
