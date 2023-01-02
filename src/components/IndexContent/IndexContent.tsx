@@ -11,10 +11,10 @@ const IndexContent = (props: any) => {
   
   const [contents, setContents] = useState<any>([]);
   const [contentOffset, setContentOffset] = useState<any>();
-  const [CName, setCName] = useState();
   const [offset, setOffset] = useState(0);
   const [perLoad, dismisspreLoad] = useIonLoading();
   const limit = 30;
+  var CName: string; 
   if(contents.length === 0){
     perLoad({
       message: 'Loading...',
@@ -63,11 +63,11 @@ const IndexContent = (props: any) => {
                     color='primary'
                     onClick={() => {
                       if(content.name){
-                        setCName(content.name);
+                        CName = content.name;
                       } else if(content.title){
-                        setCName(content.title);
+                        CName = content.title;
                       } else if(content.fullName){
-                        setCName(content.fullName);
+                        CName = content.fullName;
                       }
                       window.location.href='/Single/'+name.toLowerCase()+'/'+content.id+'/'+CName;
                     }}
