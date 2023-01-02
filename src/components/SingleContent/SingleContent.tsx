@@ -44,7 +44,7 @@ const SingleContent: React.FC = () => {
                             return(
                                 <div key={index}>
                                     <IonCard>
-                                        <img alt="" src={content.thumbnail?.path+'.'+content.thumbnail?.extension} />
+                                        <img alt="" src={content.thumbnail?.path.replace('http', 'https')+'.'+content.thumbnail?.extension} />
                                         <IonCardHeader>
                                             <IonCardTitle>{content.name ? content.name : content.title}</IonCardTitle>
                                             <IonCardSubtitle>{content.description? content.description : ''}</IonCardSubtitle>

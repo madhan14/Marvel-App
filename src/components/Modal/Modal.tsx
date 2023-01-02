@@ -35,7 +35,7 @@ const Modal = (props: any) => {
                             return(
                                 <div key={index}>
                                     <IonCard>
-                                        <img alt='' src={modal.thumbnail?.path+'.'+modal.thumbnail?.extension} />
+                                        <img alt='' src={modal.thumbnail?.path.replace('http', 'https')+'.'+modal.thumbnail?.extension} />
                                         <IonCardHeader>
                                             <IonCardSubtitle>{modal.description}</IonCardSubtitle>
                                         </IonCardHeader>
@@ -50,7 +50,7 @@ const Modal = (props: any) => {
                                             modal.images?.map((image: any, index: any) => {
                                                 return(
                                                     <div key={index} style={{ marginTop: 10, marginBottom: 10 }}>
-                                                        <img alt="" src={image.path+'.'+image.extension} />
+                                                        <img alt="" src={image.path.replace('http', 'https')+'.'+image.extension} />
                                                     </div>
                                                 )
                                             })

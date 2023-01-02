@@ -50,7 +50,7 @@ const IndexContent = (props: any) => {
               return(
                 <IonItem key={index}>
                   <IonThumbnail slot='start'>
-                    <img alt='' src={content.thumbnail?.path+'.'+content.thumbnail?.extension} />
+                    <img alt='' src={content.thumbnail?.path.replace('http', 'https')+'.'+content.thumbnail?.extension} />
                   </IonThumbnail>
                   <IonLabel>
                     {content.name}
