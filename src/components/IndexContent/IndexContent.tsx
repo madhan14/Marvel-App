@@ -22,17 +22,20 @@ const IndexContent = (props: any) => {
       duration: 2000
     })
   }
-  
+  if(!localStorage.getItem('offset')){
+    localStorage.setItem('offset', String(offset));
+  }
+
   useEffect(() => {
     axios
-      .get(env.url+type+"?limit="+limit+"&offset="+offset+"&"+env.key)
+      .get(env.url+type+"?limit="+limit+"&offset="+localStorage.getItem('offset')+"&"+env.key)
       .then(response => {
         setContentOffset(response.data.data);
         setContents(response.data.data.results);
         dismisspreLoad();
       })
   }, [offset, limit, type, dismisspreLoad])
-
+  console.log(localStorage.getItem('offset'));
   return (
     <IonPage>
       <IonHeader>
@@ -62,6 +65,7 @@ const IndexContent = (props: any) => {
                     slot="end"
                     color='primary'
                     onClick={() => {
+                      localStorage.setItem('offset', String(offset))
                       if(content.name){
                         CName = content.name;
                       } else if(content.title){
@@ -102,6 +106,7 @@ const IndexContent = (props: any) => {
                 spinner: 'circles'
               })
               setOffset(offset+limit);
+              localStorage.setItem('offset', String(offset+limit))
             }}
           >
             <IonIcon icon={chevronForward} />
