@@ -15,6 +15,13 @@ const IndexContent = (props: any) => {
   const [offset, setOffset] = useState(0);
   const [perLoad, dismisspreLoad] = useIonLoading();
   const limit = 30;
+  if(contents.length === 0){
+    perLoad({
+      message: 'Loading...',
+      spinner: 'circles',
+      duration: 2000
+    })
+  }
   
   useEffect(() => {
     axios
