@@ -93,6 +93,7 @@ const IndexContent = (props: any) => {
                 spinner: 'circles'
               })
               setOffset(offset-limit);
+              localStorage.setItem('offset', String(offset-limit))
             }}
           >
             <IonIcon icon={chevronBack} />
