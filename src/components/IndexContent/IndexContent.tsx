@@ -13,6 +13,7 @@ const IndexContent = (props: any) => {
   const [contentOffset, setContentOffset] = useState<any>();
   const [offset, setOffset] = useState(0);
   const [perLoad, dismisspreLoad] = useIonLoading();
+  const data = localStorage.getItem('data');
   const limit = 30;
   var CName: string; 
   if(contents.length === 0){
@@ -27,14 +28,26 @@ const IndexContent = (props: any) => {
   }
 
   useEffect(() => {
-    axios
+    // if(!data){
+      axios
       .get(env.url+type+"?limit="+limit+"&offset="+localStorage.getItem('offset')+"&"+env.key)
       .then(response => {
         setContentOffset(response.data.data);
         setContents(response.data.data.results);
+        localStorage.setItem( 'data', JSON.stringify(
+          {
+            type: type,
+            offset: String(offset),
+            data: response.data.data
+          })
+        )        
         dismisspreLoad();
       })
-  }, [offset, limit, type, dismisspreLoad])
+    // } else {
+    //   setContents(JSON.parse(data).data.results)
+    //   setContentOffset(JSON.parse(data).data)
+    // }
+  }, [offset, limit, type, dismisspreLoad, data])
   
   return (
     <IonPage>
