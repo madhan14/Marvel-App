@@ -9,7 +9,7 @@ const Modal = (props: any) => {
 
     const newModal = (props: any) => {
         axios
-            .get(props.resourceURI+"?"+env.key)
+            .get(props.resourceURI.replace('http', 'https')+"?"+env.key)
             .then(response => {
                 setModal(response.data.data.results)
             })

@@ -52,7 +52,7 @@ const SingleContent: React.FC = () => {
                                         {
                                             content.urls?.map((url: any, index: any) => {
                                                 return(
-                                                    <IonButton href={url.url} key={index} fill="clear">{url.type}</IonButton>
+                                                    <IonButton href={url.url.replace('http', 'https')} key={index} fill="clear">{url.type}</IonButton>
                                                 )
                                             })
                                         }

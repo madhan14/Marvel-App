@@ -35,7 +35,7 @@ const IndexContent = (props: any) => {
         dismisspreLoad();
       })
   }, [offset, limit, type, dismisspreLoad])
-  console.log(localStorage.getItem('offset'));
+  
   return (
     <IonPage>
       <IonHeader>
