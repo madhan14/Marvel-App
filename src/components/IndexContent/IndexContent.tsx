@@ -17,6 +17,8 @@ const IndexContent = (props: any) => {
   const limit = 30;
   var CName: string; 
   if(contents.length === 0){
+    dismisspreLoad();
+  } else {
     perLoad({
       message: 'Loading...',
       spinner: 'circles',
@@ -63,34 +65,36 @@ const IndexContent = (props: any) => {
         <IonList lines='full'>
           {
             contents?.map((content: any, index: any) => {
-              return(
-                <IonItem key={index}>
-                  <IonThumbnail slot='start'>
-                    <img alt='' src={content.thumbnail?.path.replace('http', 'https')+'.'+content.thumbnail?.extension} />
-                  </IonThumbnail>
-                  <IonLabel>
-                    {content.name}
-                    {content.title}
-                    {content.fullName}
-                  </IonLabel>
-                  <IonIcon
-                    icon={arrowForwardOutline}
-                    slot="end"
-                    color='primary'
-                    onClick={() => {
-                      localStorage.setItem('offset', String(offset))
-                      if(content.name){
-                        CName = content.name;
-                      } else if(content.title){
-                        CName = content.title;
-                      } else if(content.fullName){
-                        CName = content.fullName;
-                      }
-                      window.location.href='/Single/'+name.toLowerCase()+'/'+content.id+'/'+CName;
-                    }}
-                  />
-                </IonItem>
-              )
+              if(content.thumbnail?.path.includes('not_available') == false){
+                return(
+                  <IonItem key={index}>
+                    <IonThumbnail slot='start'>
+                      <img alt='' src={content.thumbnail?.path.replace('http', 'https')+'.'+content.thumbnail?.extension} />
+                    </IonThumbnail>
+                    <IonLabel>
+                      {content.name}
+                      {content.title}
+                      {content.fullName}
+                    </IonLabel>
+                    <IonIcon
+                      icon={arrowForwardOutline}
+                      slot="end"
+                      color='primary'
+                      onClick={() => {
+                        localStorage.setItem('offset', String(offset))
+                        if(content.name){
+                          CName = content.name;
+                        } else if(content.title){
+                          CName = content.title;
+                        } else if(content.fullName){
+                          CName = content.fullName;
+                        }
+                        window.location.href='/Single/'+name.toLowerCase()+'/'+content.id+'/'+CName;
+                      }}
+                    />
+                  </IonItem>
+                )
+              }
             })
           }
         </IonList>
