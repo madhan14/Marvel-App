@@ -19,11 +19,11 @@ const IndexContent = (props: any) => {
   if(contents.length === 0){
     dismisspreLoad();
   } else {
-    perLoad({
-      message: 'Loading...',
-      spinner: 'circles',
-      duration: 2000
-    })
+    // perLoad({
+    //   message: 'Loading...',
+    //   spinner: 'circles',
+    //   duration: 2000
+    // })
   }
   if(!localStorage.getItem('offset')){
     localStorage.setItem('offset', String(offset));
@@ -65,11 +65,11 @@ const IndexContent = (props: any) => {
         <IonList lines='full'>
           {
             contents?.map((content: any, index: any) => {
-              if(content.thumbnail?.path.includes('not_available') == false){
+              if(content.thumbnail?.path.includes('not_available') === false || type === 'creators'){
                 return(
                   <IonItem key={index}>
                     <IonThumbnail slot='start'>
-                      <img alt='' src={content.thumbnail?.path.replace('http', 'https')+'.'+content.thumbnail?.extension} />
+                      <img alt={content.name} src={content.thumbnail?.path.replace('http', 'https')+'.'+content.thumbnail?.extension} />
                     </IonThumbnail>
                     <IonLabel>
                       {content.name}
@@ -103,7 +103,7 @@ const IndexContent = (props: any) => {
         <IonToolbar>
           <IonButton
             slot='start'
-            disabled={contentOffset?.offset === 0 ? true : false}
+            disabled={contentOffset?.offset > 29 ? false : true}
             onClick = {() => {
               perLoad({
                 message: 'Loading...',
