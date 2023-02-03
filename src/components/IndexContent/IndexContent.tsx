@@ -39,7 +39,6 @@ const IndexContent = (props: any) => {
         localStorage.setItem( 'data', JSON.stringify(
           {
             type: type,
-            offset: String(offset),
             data: response.data.data
           })
         )        
@@ -65,7 +64,7 @@ const IndexContent = (props: any) => {
         <IonList lines='full'>
           {
             contents?.map((content: any, index: any) => {
-              if(content.thumbnail?.path.includes('not_available') === false || type === 'creators' || type === 'stories'){
+              // if(content.thumbnail?.path.includes('not_available') === false || type === 'creators' || type === 'stories'){
                 return(
                   <IonItem key={index}>
                     <IonThumbnail slot='start'>
@@ -94,7 +93,7 @@ const IndexContent = (props: any) => {
                     />
                   </IonItem>
                 )
-              }
+              // }
             })
           }
         </IonList>
@@ -109,8 +108,8 @@ const IndexContent = (props: any) => {
                 message: 'Loading...',
                 spinner: 'circles'
               })
-              setOffset(offset-limit);
-              localStorage.setItem('offset', String(offset-limit))
+              setOffset(JSON.parse(localStorage.getItem('data') as string).data.offset-limit);
+              localStorage.setItem('offset', String(JSON.parse(localStorage.getItem('data') as string).data.offset-limit))
             }}
           >
             <IonIcon icon={chevronBack} />
@@ -123,8 +122,8 @@ const IndexContent = (props: any) => {
                 message: 'Loading...',
                 spinner: 'circles'
               })
-              setOffset(offset+limit);
-              localStorage.setItem('offset', String(offset+limit))
+              setOffset(JSON.parse(localStorage.getItem('data') as string).data.offset+limit);
+              localStorage.setItem('offset', String(JSON.parse(localStorage.getItem('data') as string).data.offset+limit))
             }}
           >
             <IonIcon icon={chevronForward} />
