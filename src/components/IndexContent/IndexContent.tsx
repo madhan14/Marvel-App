@@ -65,7 +65,7 @@ const IndexContent = (props: any) => {
         <IonList lines='full'>
           {
             contents?.map((content: any, index: any) => {
-              if(content.thumbnail?.path.includes('not_available') === false || type === 'creators'){
+              if(content.thumbnail?.path.includes('not_available') === false || type === 'creators' || type === 'stories'){
                 return(
                   <IonItem key={index}>
                     <IonThumbnail slot='start'>
